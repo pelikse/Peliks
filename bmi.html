@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+        
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="bmi.css">
+    <link rel="stylesheet" href="style.css">
+    <title>BMI Calculator</title>
+</head>
+<header>
+    <a href="#" class="logo"><i class="ri-computer-line"></i></a>
+    <ul class="navbar">
+        <li><a href="index.html">Biography</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="timetable.html">Time Table</a></li>
+        <li><a href="#footer">Links</a></li>
+        <li><a href="bmi.html">BMI Calculator</a></li>
+    </ul>
+    <hr>
+
+</header>
+<body>
+    <h1>BMI CALCULATOR</h1>
+  <div class="container">
+    <div class="form-group">
+      <label for="weight">Weight (kg):</label>
+      <input type="text" id="weight" placeholder="Enter weight" />
+    </div>
+    <div class="form-group">
+      <label for="height">Height (cm):</label>
+      <input type="text" id="height" placeholder="Enter height" />
+    </div>
+    <div class="form-group">
+      <button onclick="calculateBMI()">Calculate</button>
+    </div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <section id="footer">
+    <footer>
+        <div class="footer-content">
+            <p>Folo, lek, en subrek</p>
+            <ul class="socials">
+                <li><a href="https://www.facebook.com/felixlee.felixlee"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/peliks98/"><i class="fa fa-instagram"></i></a></li>
+            
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy; 2023</p>
+        </div>
+    </footer>
+</section>  
+
+  <script>
+    function calculateBMI() {
+      var weightInput = document.getElementById('weight');
+      var heightInput = document.getElementById('height');
+      var resultDiv = document.getElementById('result');
+      
+      var weight = parseFloat(weightInput.value);
+      var height = parseFloat(heightInput.value) / 100; // Convert height to meters
+      
+      if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+        resultDiv.innerHTML = 'Please enter valid values for weight and height.';
+        return;
+      }
+      
+      var bmi = weight / (height * height);
+      var bmiCategory = getBMICategory(bmi);
+      
+      resultDiv.innerHTML = 'Your BMI: ' + bmi.toFixed(2) + ' - ' + bmiCategory;
+    }
+    
+    function getBMICategory(bmi) {
+      if (bmi < 18.5) {
+        return 'Underweight';
+      } else if (bmi < 25) {
+        return 'Normal weight';
+      } else if (bmi < 30) {
+        return 'Overweight';
+      } else {
+        return 'Obese';
+      }
+    }
+  </script>
+</body>
+
+</html>
